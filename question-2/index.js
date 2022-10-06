@@ -7,10 +7,17 @@ const resolvePromise = () => {
 const rejectPromise = () => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      reject(new Error('error: delayed exception!'));
+      try {
+        throw new Error("message: 'delayed rejection'");
+      } catch (e) {
+        reject(e);
+      }
     }, 500);
   });
 };
 
-resolvePromise().then(console.log('message: delayed success'));
-rejectPromise().catch((e) => console.error(e));
+resolvePromise().then(() => {
+  let message = "message: 'delayed success'";
+  console.log(message);
+});
+rejectPromise().catch((e) => console.log(e));

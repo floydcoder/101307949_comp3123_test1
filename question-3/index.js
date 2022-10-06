@@ -10,10 +10,6 @@ const remove = require('./remove');
 let fs = require('fs');
 let path = require('path');
 
-//console.log(path.dirname());
-
-// console.log(create.files());
-// console.log(remove.files());
 
 const logDir = '\\Log';
 const content = 'Marco Stevanella 101307949';
@@ -24,7 +20,7 @@ if (fs.existsSync(__dirname + logDir)) {
   console.log('Directory Exists!');
   // remove files in Log directory, if directory exists
   remove.files(logDir, fileName);
-  //fs.rmdirSync(__dirname + logDir);
+  fs.rmdirSync(__dirname + logDir, { recursive: true, force: true });
 } else {
   console.log('Direcory Does Not Exist');
   // Create Log directory, if it does not exists
